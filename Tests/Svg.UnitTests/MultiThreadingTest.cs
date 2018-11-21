@@ -8,8 +8,10 @@ namespace Svg.UnitTests
 {
 
     [TestClass]
+    [Ignore]
     public class MultiThreadingTest : SvgTestHelper
     {
+        // FIXME: provide path to existing file of required size
 
         protected override string TestFile { get { return @"d:\temp\test.svg"; } }
         protected override int ExpectedSize { get { return 600000; } }
