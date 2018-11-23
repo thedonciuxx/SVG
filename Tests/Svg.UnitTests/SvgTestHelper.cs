@@ -123,6 +123,7 @@ namespace Svg.UnitTests
             {
                 Trace.WriteLine("Load XmlDocument from resource data.");
                 var xmlDoc = new XmlDocument();
+                xmlDoc.XmlResolver = new SvgDtdResolver();
                 xmlDoc.Load(s);
                 Trace.WriteLine("Done XmlDocument loading from resource data.");
                 return xmlDoc;
@@ -147,8 +148,8 @@ namespace Svg.UnitTests
         /// <returns>File data as xml document.</returns>
         protected virtual XmlDocument GetXMLDocFromFile(string file)
         {
-            if (!File.Exists(file))                
-                Assert.Fail("Test file missing." + Directory.GetCurrentDirectory() + file);
+            if (!File.Exists(file))
+                Assert.Fail("Test file missing.", file);
 
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(File.ReadAllText(file));

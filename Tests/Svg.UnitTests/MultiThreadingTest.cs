@@ -8,13 +8,10 @@ namespace Svg.UnitTests
 {
 
     [TestClass]
-    [Ignore]
     public class MultiThreadingTest : SvgTestHelper
     {
-        // FIXME: provide path to existing file of required size
-
-        protected override string TestFile { get { return @"d:\temp\test.svg"; } }
-        protected override int ExpectedSize { get { return 600000; } }
+        protected override string TestFile { get { return @"..\..\..\..\Tests\Svg.UnitTests\Resources\Issue225_LargeUri\Speedometer.svg"; } }
+        protected override int ExpectedSize { get { return 100000; } }
 
         private void LoadFile()
         {
@@ -41,9 +38,11 @@ namespace Svg.UnitTests
 
 
         [TestMethod]
+        [Ignore]
         [ExpectedException(typeof(SvgMemoryException))]
         public void SVGGivesMemoryExceptionOnTooManyParallelTest()
         {
+            // FIXME: cannot reliably reproduce error, depends on system
             try
             {
                 Parallel.For(0, 50, (x) =>
