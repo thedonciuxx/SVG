@@ -27,8 +27,11 @@ namespace Svg.UnitTests
             "PassingTests#csv", DataAccessMethod.Sequential)]
         public void CompareSvgImageWithReference()
         {
-            var basePath = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(
-                TestContext.TestRunDirectory)));
+            var basePath = TestContext.TestRunDirectory;
+            while (!basePath.ToLower().EndsWith("svg"))
+            {
+                basePath = Path.GetDirectoryName(basePath);
+            }
             basePath = Path.Combine(basePath, "Tests", "W3CTestSuite");
             var svgBasePath = Path.Combine(basePath, "svg");
             var baseName = TestContext.DataRow[0] as string;
